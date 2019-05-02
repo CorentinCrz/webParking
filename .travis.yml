@@ -1,5 +1,5 @@
 language: php
-sudo: false
+sudo: true
 
 cache:
   directories:
@@ -14,9 +14,7 @@ env:
 matrix:
   fast_finish: true
   include:
-    - php: 7.1.18
-    - php: 7.2
-    - php: 7.3
+    - php: 7.2.6
     - php: nightly
   allow_failures:
     - php: nightly
