@@ -4,7 +4,9 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -32,6 +34,14 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
+            ->add('firstname')
+            ->add('lastname')
+            ->add('address')
+            ->add('city')
+            ->add('zipcode')
+            ->add('country', CountryType::class)
+            ->add('phone')
+            ->add('save', SubmitType::class)
         ;
     }
 
