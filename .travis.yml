@@ -17,7 +17,7 @@ matrix:
   - php: 7.2
 
 before_install:
-- '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || phpenv config-rm xdebug.ini'
+- phpenv config-rm xdebug.ini
 - composer self-update
 
 install:
@@ -27,7 +27,7 @@ install:
 script:
 - php ./bin/phpunit
 # this checks that the source code follows the Symfony Code Syntax rules
-- '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
+- php ./vendor/bin/php-cs-fixer fix --diff --dry-run -v
 # this checks that the YAML config files contain no syntax errors
 - php ./bin/console lint:yaml config
 # this checks that the Twig template files contain no syntax errors
