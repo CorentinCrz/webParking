@@ -12,6 +12,6 @@ class HomeControllerTest extends WebTestCase
 
         $client->request('GET', '/');
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
     }
 }
