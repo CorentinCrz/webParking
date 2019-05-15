@@ -72,6 +72,15 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "test": [
+            "php ./bin/phpunit",
+            "php ./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --diff --dry-run -v",
+            "php ./bin/console lint:yaml config",
+            "php ./bin/console lint:twig templates",
+            "php ./bin/console lint:xliff translations",
+            "php ./bin/console security:check",
+            "php ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction"
         ]
     },
     "conflict": {
