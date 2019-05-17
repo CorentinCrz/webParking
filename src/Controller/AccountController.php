@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Form\RegistrationFormType;
 use App\Security\AppCustomAuthenticator;
-use phpDocumentor\Reflection\Types\This;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,13 +39,14 @@ class AccountController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
-            if ($form->get('plainPassword')->getData())
+            if ($form->get('plainPassword')->getData()) {
                 $user->setPassword(
                     $passwordEncoder->encodePassword(
                         $user,
                         $form->get('plainPassword')->getData()
                     )
                 );
+            }
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);

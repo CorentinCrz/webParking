@@ -8,12 +8,9 @@ use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormEvent;
-use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationFormType extends AbstractType
 {
@@ -40,9 +37,9 @@ class RegistrationFormType extends AbstractType
                 ]),
             ],
         ];
-        if (!$this->security->getUser())
+        if (!$this->security->getUser()) {
             $passwordOptions['required'] = true;
-
+        }
 
         $builder
             ->add('email')
