@@ -21,7 +21,7 @@ class VehicleController extends AbstractController
     public function index(VehicleRepository $vehicleRepository): Response
     {
         return $this->render('account/vehicle/index.html.twig', [
-            'vehicles' => $vehicleRepository->findAll(),
+            'vehicles' => $vehicleRepository->findby(['user' => $this->getUser()]),
         ]);
     }
 
@@ -54,6 +54,9 @@ class VehicleController extends AbstractController
      */
     public function show(Vehicle $vehicle): Response
     {
+        if ($vehicle->getUser() !== $this->getUser())
+            throw $this->createAccessDeniedException();
+
         return $this->render('account/vehicle/show.html.twig', [
             'vehicle' => $vehicle,
         ]);
@@ -64,6 +67,9 @@ class VehicleController extends AbstractController
      */
     public function edit(Request $request, Vehicle $vehicle): Response
     {
+        if ($vehicle->getUser() !== $this->getUser())
+            throw $this->createAccessDeniedException();
+
         $form = $this->createForm(VehicleType::class, $vehicle);
         $form->handleRequest($request);
 
@@ -86,6 +92,9 @@ class VehicleController extends AbstractController
      */
     public function delete(Request $request, Vehicle $vehicle): Response
     {
+        if ($vehicle->getUser() !== $this->getUser())
+            throw $this->createAccessDeniedException();
+
         if ($this->isCsrfTokenValid('delete'.$vehicle->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($vehicle);
