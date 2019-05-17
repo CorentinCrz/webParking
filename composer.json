@@ -81,6 +81,9 @@
             "php ./bin/console lint:xliff translations",
             "php ./bin/console security:check",
             "php ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction"
+        ],
+        "php-fixer": [
+            "php ./vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix"
         ]
     },
     "conflict": {

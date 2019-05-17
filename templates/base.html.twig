@@ -9,6 +9,7 @@
     <header>
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <p>Email: {{ app.user.email }}</p>
+            <a href="{{ path('account') }}">My account</a>
             <a href="{{ path('app_logout') }}">Logout</a>
         {% else %}
             <a href="{{ path('app_login') }}">Login</a>

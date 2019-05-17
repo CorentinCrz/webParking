@@ -9,31 +9,41 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 
 class RegistrationFormType extends AbstractType
 {
+    public $security;
+
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $passwordOptions = [
+            // instead of being set onto the object directly,
+            // this is read and encoded in the controller
+            'mapped' => false,
+            'required' => false,
+            'constraints' => [
+                new Length([
+                    'min' => 6,
+                    'minMessage' => 'Your password should be at least {{ limit }} characters',
+                    // max length allowed by Symfony for security reasons
+                    'max' => 4096,
+                ]),
+            ],
+        ];
+        if (!$this->security->getUser()) {
+            $passwordOptions['required'] = true;
+        }
+
         $builder
             ->add('email')
-            ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
+            ->add('plainPassword', PasswordType::class, $passwordOptions)
             ->add('firstname')
             ->add('lastname')
             ->add('address')

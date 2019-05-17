@@ -1,0 +1,36 @@
+{% extends 'account/index.html.twig' %}
+
+{% block title %}Vehicle{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h2>Vehicle</h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Brand</th>
+                <td>{{ vehicle.brand }}</td>
+            </tr>
+            <tr>
+                <th>Model</th>
+                <td>{{ vehicle.model }}</td>
+            </tr>
+            <tr>
+                <th>Registration</th>
+                <td>{{ vehicle.registration }}</td>
+            </tr>
+            <tr>
+                <th>Comments</th>
+                <td>{{ vehicle.comments }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('vehicle_index') }}">back to list</a>
+
+    <a href="{{ path('vehicle_edit', {'id': vehicle.id}) }}">edit</a>
+
+    {{ include('account/vehicle/_delete_form.html.twig') }}
+{% endblock %}

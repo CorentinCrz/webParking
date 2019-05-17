@@ -1,0 +1,13 @@
+{% extends 'account/index.html.twig' %}
+
+{% block title %}New Vehicle{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h2>Create new Vehicle</h2>
+
+    {{ include('account/vehicle/_form.html.twig') }}
+
+    <a href="{{ path('vehicle_index') }}">back to list</a>
+{% endblock %}

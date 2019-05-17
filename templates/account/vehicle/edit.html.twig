@@ -1,0 +1,15 @@
+{% extends 'account/index.html.twig' %}
+
+{% block title %}Edit Vehicle{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h2>Edit Vehicle</h2>
+
+    {{ include('account/vehicle/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('vehicle_index') }}">back to list</a>
+
+    {{ include('account/vehicle/_delete_form.html.twig') }}
+{% endblock %}
