@@ -23,6 +23,7 @@ class RegistrationFormType extends AbstractType
     {
         $this->security = $security;
     }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $passwordOptions = [
