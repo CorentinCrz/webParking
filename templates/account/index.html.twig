@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+    <section>
+        <h1>My account</h1>
+        <ul>
+            <li>
+                <a href="{{ path('account_edit') }}">Manage my account</a>
+            </li>
+            <li>
+                <a href="{{ path('vehicle_index') }}">Manage my cars</a>
+            </li>
+            <li>
+                <a href="">Create or edit bookings</a>
+            </li>
+            <li>
+                <a href="">My bookings</a>
+            </li>
+            <li>
+                <a href="">My invoices</a>
+            </li>
+        </ul>
+    </section>
+{% endblock %}

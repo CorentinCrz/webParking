@@ -1,0 +1,11 @@
+{% extends 'account/index.html.twig' %}
+
+{% block title %}Manage my personnal data{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+
+    <h2>Manage my personnal data</h2>
+
+    {{ form(registrationForm) }}
+{% endblock %}
