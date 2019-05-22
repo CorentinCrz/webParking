@@ -1,0 +1,10 @@
+main, header, footer{
+    max-width: 80%;
+    margin: auto;
+}
+header{
+    margin: 20px auto;
+}
+header li {
+    display: inline-block;
+}
